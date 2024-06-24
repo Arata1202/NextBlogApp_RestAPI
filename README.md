@@ -1,3 +1,5 @@
+<img width="678" alt="スクリーンショット 2024-06-25 1 02 15" src="https://github.com/Arata1202/NextBlogApp_RestAPI/assets/142312848/f2438121-43a5-4959-ad03-97cd94f2da51">
+
 ## RestAPI デプロイ手順
 
 ### Docker Container
