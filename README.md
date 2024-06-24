@@ -1,6 +1,6 @@
 ## RestAPI デプロイ手順
 
-### Docker 　 Container
+### Docker Container
 
 - CORS の設定をする。
 
