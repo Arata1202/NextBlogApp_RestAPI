@@ -1,47 +1,34 @@
-## ECR へのプッシュ方法
+## RestAPI デプロイ手順
 
-- `commands.sh`を作成
-- AWS コンソールを参考に、`commands.sh`に以下を記述
+### Docker 　 Container
 
-```
-aws ecr ~
-docker build -t example --platform linux/x86_64 .
-docker tag ~
-docker push ~
-```
-
-※ Mac なら `build` に `--platform linux/x86_64` を追記
-
-- シェルの起動
+- CORS の設定をする。
 
 ```
-chmod +x commands.sh
-./commands.sh
+"Access-Control-Allow-Headers"
+"Access-Control-Allow-Origin
+"Access-Control-Allow-Methods
 ```
 
-## CORS の確認
+### AWS Elastic Container Registry
 
-### GET リクエスト
+- プッシュのみ。特別な設定はなし。
 
-```
-curl -i -X GET <API_GATEWAY_URL> -H "Origin: https://example.com"
+### AWS Lambda
 
-```
+- プッシュしたコンテナを関数としてデプロイ。
+- 環境変数を設定する。
 
-### POST リクエスト
+### AWS API Gateway
 
-```
-curl -i -X POST <API_GATEWAY_URL> -H "Origin: https://example.com" -H "Content-Type: application/json" -d '{"key1":"value1"}'
+- RestAPI の新規作成。
+- メソッドを作成。
+  - メソッドタイプ（GET や POST）を選択。OPTION は不要。
+  - 統合タイプは Lambda 関数を選択。
+  - Lambda プロキシを選択。
+- デプロイ
+  - ステージ名を設定し、デプロイ。
 
-```
+### 完成
 
-###　以下殴り書き
-
-ECR に プッシュ
-
-lambda 関数作成
-lambda 環境変数
-
-apigateway retapi 作成
-メソッド　ラムダ関数　プロキシ統合
-デプロイしてステージ
+- 関数 URL にリクエスト。
