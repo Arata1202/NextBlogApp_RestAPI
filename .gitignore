@@ -1,1 +1,3 @@
 commands.sh
+.env
+trigger.sh
